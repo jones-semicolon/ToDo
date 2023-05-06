@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  --background: hsl(0 0% 97%);
+  --shadow: hsl(0 0% 0%);
+  --border: hsl(0 0% 2% / 0.4);
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--background);
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: hsl(240 0% 6%);
+}
+
+main {
+  box-shadow: 0 0 2px var(--shadow);
+  border-radius: 1rem;
+  max-height: 90vh;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+main,
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+section {
+  width: 100%;
+  align-items: flex-start;
+  padding: unset;
+}
+
+input[type="text"] {
+  all: unset;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(0 0% 70%);
+}
+
+.lists {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: auto;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  outline-color: red;
+  gap: 1rem;
+  padding: 0.5rem;
+  border: 1px solid hsl(0 0% 60%);
+  border-radius: 0.5rem;
+}
+
+.item > input + div {
+  flex-grow: 1;
+}
+
+.item.complete:has(input:checked) > input + div {
+  text-decoration: line-through;
+}
+
+.item.complete:has(input:checked) {
+  --bg: hsl(80 65% 55% / 0.7);
+  background-color: var(--bg);
+  border-color: var(--bg);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+h5 {
+  color: hsl(0 0% 80%);
+}
+
+section.completed {
+  display: none;
+}
+
+section.completed:has(.lists > .item) {
+  display: flex;
+}
+
+/*darkmode switch*/
+/*	
+*/
+main + .darkmode-switch {
+  position: absolute;
+  width: min(15vw, 100px);
+  border: 1px solid var(--border);
+  inset: 1rem 1rem auto auto;
+  display: flex;
+  align-items: center;
+  aspect-ratio: 8/4;
+  border-radius: 2rem;
+}
+
+.darkmode-switch > input {
+  height: 100%;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.darkmode-switch > input:after {
+  content: "\2600";
+  position: absolute;
+  height: 100%;
+  left: 0;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: all 250ms;
+}
+
+.darkmode-switch > input:checked:after {
+  --dark:
+  hsl(240
+  0% 20%);
+  content: "🌙";
+  left: 100%;
+  translate: -100% -50%;
+  background-color: var(--dark);
+}
+
+:has(.darkmode-switch > input:checked) body {
+  background-color: hsl(240 0% 6%);
+  color: hsl(0 0% 97%);
+  --shadow: hsl(0 0% 70%);
+  --border: hsl(0 0% 98% / 0.4);
+}
